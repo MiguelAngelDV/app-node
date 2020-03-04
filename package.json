@@ -1,0 +1,23 @@
+{
+  "name": "express-workshop-2020-1",
+  "version": "1.0.0",
+  "description": "This a project for NodeJS Workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mysql"
+  ],
+  "repository":{
+    "type": "git",
+    "url": "git+https://github.com/MiguelAngelDV/workshop-nodeJS-2020-1.git"
+  },
+  "author": "Miguel Angel",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
