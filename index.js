@@ -1,11 +1,16 @@
 // Import things (Libraries)
 const express = require("express");
+const morgan = require("morgan");
 const bodyparser = require("body-parser");
+
+// Funciones importadas del archivo
 const pokemon = require("./routes/pokemon");
 
 // Instancia de la clase express
 const app = express();
 
+// Middleware de Morgan
+app.use(morgan("dev"));
 // Metodos y componentes que utiliza la aplicación de Bodyparser.
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
