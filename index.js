@@ -1,8 +1,7 @@
 // Import things (Libraries)
 const express = require("express");
 const bodyparser = require("body-parser");
-// Import DB
-const { pokemon } = require("./pokedex.json");
+const pokemon = require("./routes/pokemon");
 
 // Instancia de la clase express
 const app = express();
@@ -11,46 +10,18 @@ const app = express();
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
-// POST
-// POST usa un body que es un atributo de la petición.
-app.post("/pokemon/", (req, res, next) => {
-    return res.status(200).send("Estas en pokemon POST, este es el id:" + req.body.name);
-});
-
 //Ruta default
 app.get("/", (req, res, next) => {
-    //   const pokemon = pokedex.pokemon;
-    return res.status(200).send("Bienvenido al Pokedex");
-});
-// Consulta por ID
-app.get("/pokemon/:id([0-9]{1,3})", (req, res, next) => {
-    const id = req.params.id - 1;
-    if (id >= 0 && id <= 150) {
-        return res.status(200).send(pokemon[id]);
-    }
-    return res.status(404).send("Pokemon no encontrado");
+  //   const pokemon = pokedex.pokemon;
+  return res.status(200).send("Bienvenido al Pokedex");
 });
 
-// Ruta de pokemon
-app.get("/pokemon", (req, res, next) => {
-    return res.status(200).send(pokemon);
-});
-
-// Consulta por nombre.
-app.get("/pokemon/:name([A-Za-z]+)", (req, res, next) => {
-    const name = req.params.name;
-    const pk = pokemon.filter((p) => {
-        return (p.name.toUpperCase() == name.toUpperCase()) && p;
-    });
-    if (pk.length > 0) {
-        res.status(200).send(pk);
-    }
-    return res.status(404).send("Pokemon no encontrado");
-});
+// Delegamos que archivos y funciones se encargaran de procesar las rutas.
+app.use("/pokemon", pokemon);
 
 // process.env.PORT => Define the default port to run and if it isn´t available uses the port 3000
 app.listen(process.env.PORT || 3000, () => {
-    console.log("Server is running on port 3000");
+  console.log("Server is running on port 3000");
 });
 
 // ******* Ejemplos *******
