@@ -12,13 +12,14 @@
     "express",
     "mysql"
   ],
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/MiguelAngelDV/workshop-nodeJS-2020-1.git"
   },
   "author": "Miguel Angel",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1"
   }
 }
