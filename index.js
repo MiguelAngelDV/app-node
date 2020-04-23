@@ -1,7 +1,6 @@
 // Import things (Libraries)
 const express = require("express");
 const morgan = require("morgan");
-const bodyparser = require("body-parser");
 
 // Funciones importadas del archivo
 const pokemon = require("./routes/pokemon");
@@ -11,14 +10,22 @@ const app = express();
 
 // Middleware de Morgan
 app.use(morgan("dev"));
+
+//Body Parser de Express
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // Metodos y componentes que utiliza la aplicación de Bodyparser.
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: true }));
+// app.use(bodyparser.json());
+// app.use(bodyparser.urlencoded({ extended: true }));
 
 //Ruta default
 app.get("/", (req, res, next) => {
   //   const pokemon = pokedex.pokemon;
-  return res.status(200).send("Bienvenido al Pokedex");
+  return res.status(200).json({ code: 1, message: "Bienvenido al Pokedex" });
+});
+
+app.use((req, res, next) => {
+  return res.status(404).json({ code: 404, message: "URL No ENCONTRADO" });
 });
 
 // Delegamos que archivos y funciones se encargaran de procesar las rutas.
