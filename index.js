@@ -24,12 +24,13 @@ app.get("/", (req, res, next) => {
   return res.status(200).json({ code: 1, message: "Bienvenido al Pokedex" });
 });
 
+// Delegamos que archivos y funciones se encargaran de procesar las rutas.
+app.use("/pokemon", pokemon);
+
+// Codigo de error.
 app.use((req, res, next) => {
   return res.status(404).json({ code: 404, message: "URL No ENCONTRADO" });
 });
-
-// Delegamos que archivos y funciones se encargaran de procesar las rutas.
-app.use("/pokemon", pokemon);
 
 // process.env.PORT => Define the default port to run and if it isn´t available uses the port 3000
 app.listen(process.env.PORT || 3000, () => {

@@ -7,8 +7,25 @@ const db = require("../config/database");
 
 // POST
 // POST usa un body que es un atributo de la petición.
-pokemon.post("/", (req, res, next) => {
-  return res.status(200).json(req.body);
+pokemon.post("/", async (req, res, next) => {
+  // Deconstruccion del body segun sus variables y asignacion  a las ismas
+  const { pok_name, pok_height, pok_weight, pok_base_experience } = req.body;
+  if (pok_name && pok_height && pok_weight && pok_base_experience) {
+    let query =
+      "INSERT INTO pokemon (pok_name, pok_height, pok_weight, pok_base_experience)";
+    query += `VALUES('${pok_name}', ${pok_height}, ${pok_weight}, ${pok_base_experience})`;
+
+    // Enviar la sentencia
+    const rows = await db.query(query);
+    if (rows.affectedRows == 1) {
+      return res
+        .status(201)
+        .json({ code: 201, message: "Pokemon insertado correctamente" });
+    }
+    return res.status(500).json({ code: 500, message: "Ocurrio un problema" });
+  }
+
+  return res.status(500).json({ code: 500, message: "Campos incompletos" });
 });
 
 // GET
