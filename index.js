@@ -4,6 +4,7 @@ const morgan = require("morgan");
 
 // Funciones importadas del archivo
 const pokemon = require("./routes/pokemon");
+const user = require("./routes/user");
 
 // Instancia de la clase express
 const app = express();
@@ -26,6 +27,7 @@ app.get("/", (req, res, next) => {
 
 // Delegamos que archivos y funciones se encargaran de procesar las rutas.
 app.use("/pokemon", pokemon);
+app.use("/user", user);
 
 // Codigo de error.
 app.use((req, res, next) => {
