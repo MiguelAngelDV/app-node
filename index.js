@@ -5,6 +5,9 @@ const morgan = require("morgan");
 // Funciones importadas del archivo
 const pokemon = require("./routes/pokemon");
 const user = require("./routes/user");
+// Middleware
+const auth = require("./middleware/auth");
+const notFound = require("./middleware/notFound");
 
 // Instancia de la clase express
 const app = express();
@@ -26,13 +29,13 @@ app.get("/", (req, res, next) => {
 });
 
 // Delegamos que archivos y funciones se encargaran de procesar las rutas.
-app.use("/pokemon", pokemon);
 app.use("/user", user);
+app.use(auth);
+
+app.use("/pokemon", pokemon);
 
 // Codigo de error.
-app.use((req, res, next) => {
-  return res.status(404).json({ code: 404, message: "URL No ENCONTRADO" });
-});
+app.use(notFound);
 
 // process.env.PORT => Define the default port to run and if it isn´t available uses the port 3000
 app.listen(process.env.PORT || 3000, () => {
