@@ -8,6 +8,7 @@ const user = require("./routes/user");
 // Middleware
 const auth = require("./middleware/auth");
 const notFound = require("./middleware/notFound");
+const cors = require("./middleware/cors");
 
 // Instancia de la clase express
 const app = express();
@@ -29,6 +30,8 @@ app.get("/", (req, res, next) => {
 });
 
 // Delegamos que archivos y funciones se encargaran de procesar las rutas.
+
+app.use(cors);
 app.use("/user", user);
 app.use(auth);
 
