@@ -12,7 +12,6 @@ const cors = require("./middleware/cors");
 
 // Instancia de la clase express
 const app = express();
-
 // Middleware de Morgan
 app.use(morgan("dev"));
 
@@ -30,13 +29,10 @@ app.get("/", (req, res, next) => {
 });
 
 // Delegamos que archivos y funciones se encargaran de procesar las rutas.
-
 app.use(cors);
 app.use("/user", user);
 app.use(auth);
-
 app.use("/pokemon", pokemon);
-
 // Codigo de error.
 app.use(notFound);
 
