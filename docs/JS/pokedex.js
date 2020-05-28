@@ -11,7 +11,8 @@ function init() {
     };
     loadPokemon();
   } else {
-    window.location.href = "index.html";
+    // Deploy stuff
+    // window.location.href = "index.html";
   }
 }
 

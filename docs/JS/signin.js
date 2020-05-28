@@ -6,7 +6,8 @@ function init() {
     });
     document.querySelector(".btn-primary").addEventListener("click", signin);
   } else {
-    window.location.href = "pokedex.html";
+    // Deploy Stuff
+    // window.location.href = "pokedex.html";
   }
 }
 
