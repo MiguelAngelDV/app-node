@@ -7,7 +7,8 @@ function init() {
     });
     document.querySelector(".btn-primary").addEventListener("click", login);
   } else {
-    window.location.href = "pokedex.html";
+    // Deply Stuff
+    // window.location.href = "pokedex.html";
   }
 }
 
