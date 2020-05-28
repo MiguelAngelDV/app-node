@@ -33,6 +33,7 @@ app.use(cors);
 app.use("/user", user);
 app.use(auth);
 app.use("/pokemon", pokemon);
+
 // Codigo de error.
 app.use(notFound);
 
